@@ -181,8 +181,7 @@ const AllSpaInOnePoint = async () => { //Hiển thị các spa xung quanh point
 //   return allSpa;
 // }
 async function CheckAllLocationSpa() {
-
-  let point = { lat: 10.8155068, lng: 106.4284086 };
+  let point = { lat: 10.800140, lng: 106.693650 };
   // const lat = document.getElementById('lat').value;
   // const lng = document.getElementById('lng').value;
   // point.lat = Number(lat);
@@ -225,7 +224,7 @@ async function CheckAllLocationSpa() {
   });
   bermudaTriangle.setMap(map);
 
-  const data = await fetch('./Data/data.json')
+  const data = await fetch('./Data/Data().json')
     .then(response => response.json())
     .then(jsonResponse => { return jsonResponse })
   // const data = data1.concat(data2).concat(data3).concat(data4).concat(data5);
@@ -247,11 +246,11 @@ async function CheckAllLocationSpa() {
 
 
 const AllSpa = async (point) => {
-  let pointTest = { lat: 10.8155068, lng: 106.4284086 };
+  let pointTest = { lat: 10.800140, lng: 106.693650 };
   const arr = LocationAround(pointTest);
   //Với mỗi point quét spa 
   let allSpa = [];
-  for (let i = 373; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     setTimeout(async () => {
       let point = arr[i];
       let spas = await getLocations(point);
@@ -262,7 +261,7 @@ const AllSpa = async (point) => {
         allSpa.push(spas[j]);
       }
       console.log(allSpa);
-    }, (i - 373) * 10000)
+    }, (i - 0) * 10000)
   }
   setTimeout(async () => {
     exportToJsonFile(allSpa);
