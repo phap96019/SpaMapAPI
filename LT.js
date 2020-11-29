@@ -109,7 +109,7 @@ const getLocations = async (point) => {
   const lng = point.lng;
   const distance = 1500;
   const limit = 100;
-  const url = `https://graph.facebook.com/v8.0/search?type=place&access_token=${token}&q="spa"&fields=name,checkins,website,page{id,name,link,about,location{city,latitude,longitude,street},phone}&center=${lat},${lng}&distance=${distance}&limit=${limit}`
+  const url = `https://graph.facebook.com/v8.0/search?type=place&access_token=${token}&q="clinic"&fields=name,checkins,website,page{id,fan_count,name,link,about,location{city,latitude,longitude,street},phone}&center=${lat},${lng}&distance=${distance}&limit=${limit}`
   let result = await fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -250,7 +250,7 @@ const AllSpa = async (point) => {
   const arr = LocationAround(pointTest);
   //Với mỗi point quét spa 
   let allSpa = [];
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 436; i < arr.length; i++) {
     setTimeout(async () => {
       let point = arr[i];
       let spas = await getLocations(point);
@@ -261,7 +261,7 @@ const AllSpa = async (point) => {
         allSpa.push(spas[j]);
       }
       console.log(allSpa);
-    }, (i - 0) * 10000)
+    }, (i - 436) * 10000)
   }
   setTimeout(async () => {
     exportToJsonFile(allSpa);
